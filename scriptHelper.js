@@ -28,26 +28,17 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     }
  };
  
- function formSubmission(document, pilot, copilot, fuelLevel, cargoLevel) {
-    function throwAlert(field, message) {
-        window.alert(field + message);
+ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+    let fields = {
+        pilot: pilot,
+        copilot: copilot,
+        fuelLevel: fuelLevel,
+        cargoLevel: cargoLevel
     };
-
-    if (validateInput(pilot) !== "Not a Number") {
-        throwAlert("Field Pilot: ", validateInput(pilot));
-    };
-
-    if (validateInput(copilot) !== "Not a Number") {
-        throwAlert("Field Co-Pilot: ", validateInput(copilot));
-    };
-
-    if (validateInput(fuelLevel) !== "Is a Number") {
-        throwAlert("Field Fuel Level: ", validateInput(fuelLevel));
-    };
-
-    if (validateInput(cargoLevel) !== "Is a Number") {
-        throwAlert("Field Cargo Level: ", validateInput(cargoLevel));
-    };
+    
+    for (let field in fields) {
+        alert(`Field ${field.charAt(0).toUpperCase() + field.slice(1)}: ${validateInput(fields[field])}`);
+    }
 
     document.getElementById("faultyItems").style.visibility = "visible";
     document.getElementById("pilotStatus").innerHTML += ` ${pilot}`;
